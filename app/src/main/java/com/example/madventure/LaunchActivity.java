@@ -22,6 +22,7 @@ public class LaunchActivity extends AppCompatActivity {
 
     ImageView background;
     LinearLayout launchLogo;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +34,12 @@ public class LaunchActivity extends AppCompatActivity {
 
             @Override
             protected String doInBackground(Void... noargs) {
-                MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.sandship);
-
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.release();
-                    }
-                });
-
-                mediaPlayer.start();
-
                 return null;
             }
 
             @Override
             protected void onPostExecute(String result) {
-                MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.sandship);
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.sandship);
                 mediaPlayer.start();
             }
         }
