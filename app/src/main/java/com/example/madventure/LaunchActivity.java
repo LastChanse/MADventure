@@ -8,6 +8,8 @@ import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -23,11 +25,31 @@ public class LaunchActivity extends AppCompatActivity {
     ImageView background;
     LinearLayout launchLogo;
     MediaPlayer mediaPlayer;
+    boolean skip = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
+
+        // Привязки
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.sandship);
+        background = (ImageView) findViewById(R.id.launchBackground);
+        launchLogo = (LinearLayout) findViewById(R.id.launchLogo);
+
+        // При касании по фону можно пропустить заставку
+        background.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                mediaPlayer.stop();
+                background.clearAnimation();
+                launchLogo.clearAnimation();
+                launchLogo.setAlpha(1f);
+                skip = true;
+                startActivity(new Intent(LaunchActivity.this, OnBoardingActivity.class));
+                return false;
+            }
+        });
 
         // Музыка
         class LongAndComplicatedTask extends AsyncTask<Void, Void, String> {
@@ -39,7 +61,6 @@ public class LaunchActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(String result) {
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.sandship);
                 mediaPlayer.start();
             }
         }
@@ -49,7 +70,6 @@ public class LaunchActivity extends AppCompatActivity {
 
         // Заставка
         // Движение фона
-        background = (ImageView) findViewById(R.id.launchBackground);
         Animation bgAnim = AnimationUtils.loadAnimation(this, R.anim.launch_background);
         background.startAnimation(bgAnim);
 
@@ -57,7 +77,6 @@ public class LaunchActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                launchLogo = (LinearLayout) findViewById(R.id.launchLogo);
                 Animation lgAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.launch_logo);
                 launchLogo.setAlpha(1);
                 launchLogo.startAnimation(lgAnim);
@@ -68,7 +87,9 @@ public class LaunchActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                startActivity(new Intent(LaunchActivity.this, OnBoardingActivity.class));
+                if (!skip) {
+                    startActivity(new Intent(LaunchActivity.this, OnBoardingActivity.class));
+                }
             }
         }, 35000
         );
