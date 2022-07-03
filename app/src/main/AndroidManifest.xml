@@ -14,11 +14,16 @@
         android:theme="@style/Theme.MADventure"
         tools:targetApi="31">
         <activity
+            android:name=".RegistrationActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".AuthorizationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".OnBoardingActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="landscape" />
         <activity
             android:name=".LaunchActivity"
