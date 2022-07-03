@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/pageImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/page_image1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select the quest"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gothampro_medium"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="@+id/pageImage"
+        app:layout_constraintStart_toStartOf="@+id/pageImage"
+        app:layout_constraintTop_toBottomOf="@+id/pageImage" />
+
+
+    <TextView
+        android:id="@+id/pageText"
+        android:layout_width="450dp"
+        android:layout_height="wrap_content"
+        android:text="A huge collection of different quests. Historical, children's, outdoors and many others..."
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gothampro_medium"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/pageTitle"
+        app:layout_constraintStart_toStartOf="@+id/pageTitle"
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle" />
+</androidx.constraintlayout.widget.ConstraintLayout>

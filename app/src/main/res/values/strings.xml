@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MADventure</string>
+
+    <string name="onboarding_page_title1">Select the quest!</string>
+    <string name="onboarding_page_title2">Complete the task!</string>
+    <string name="onboarding_page_title3">Become a Top Key Finder</string>
+
+    <string name="onboarding_page_text1">A huge collection of different quests. Historical, children\'s, outdoors and many others...</string>
+    <string name="onboarding_page_text2">Search for secret keys, location detection, step counting and much more...</string>
+    <string name="onboarding_page_text3">User ratings, quest ratings, quest author ratings...</string>
 </resources>

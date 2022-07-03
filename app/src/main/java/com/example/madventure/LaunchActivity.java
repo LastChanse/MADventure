@@ -70,6 +70,7 @@ public class LaunchActivity extends AppCompatActivity {
             public void run() {
                 startActivity(new Intent(LaunchActivity.this, OnBoardingActivity.class));
             }
-        }, 35000);
+        }, 35000
+        );
     }
 }
